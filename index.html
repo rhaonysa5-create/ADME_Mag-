@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Igreja Comunidade da Graça</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6efe2;--card:#fffcf6;--tx:#3d2c1e;--mut:#857463;--gold:#b08d57;--gold2:#d4b47a;
+  --brown:#5a3e28;--ln:#eadfca;--sh:0 10px 30px -12px rgba(90,62,40,.25);
+  --serif:'Cormorant Garamond',Georgia,'Times New Roman',serif;
+  --sans:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#15100c;--card:#211a14;--tx:#f3eadc;--mut:#b5a692;--gold:#d6b173;--gold2:#ecd09b;
+  --brown:#e9d7b9;--ln:#34291f;--sh:0 10px 30px -12px rgba(0,0,0,.6)}}
+:root[data-theme="dark"]{
+  --bg:#15100c;--card:#211a14;--tx:#f3eadc;--mut:#b5a692;--gold:#d6b173;--gold2:#ecd09b;
+  --brown:#e9d7b9;--ln:#34291f;--sh:0 10px 30px -12px rgba(0,0,0,.6)}
+
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.65 var(--sans);transition:background .4s,color .4s;padding-bottom:env(safe-area-inset-bottom,0)}
+main{max-width:720px;margin:0 auto;padding:0 16px 40px}
+h1,h2{font-family:var(--serif);font-weight:700;margin:0}
+p{margin:0 0 10px}
+
+.fab{position:fixed;top:calc(env(safe-area-inset-top,0px) + 12px);right:12px;z-index:50}
+.fab button{font:500 15px var(--sans);color:var(--tx);background:color-mix(in srgb,var(--card) 88%,transparent);
+  backdrop-filter:blur(10px);border:1px solid var(--ln);border-radius:999px;padding:9px 14px;cursor:pointer;
+  box-shadow:var(--sh);transition:transform .2s}
+.fab button:active{transform:scale(.93)}
+
+.banner{height:clamp(210px,46vw,320px);margin:0 -16px;background:linear-gradient(160deg,#8a6a43,#3b2817) center/cover no-repeat;
+  border-radius:0 0 34px 34px;position:relative;overflow:hidden}
+.banner::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.35),transparent 55%)}
+.logo{position:relative;z-index:2;width:118px;height:118px;margin:-59px auto 0;border-radius:50%;
+  background:var(--card) center/cover no-repeat;border:4px solid var(--bg);box-shadow:0 0 0 2px var(--gold),var(--sh);
+  display:flex;align-items:center;justify-content:center;font-size:46px;overflow:hidden}
+
+.hero{text-align:center;padding:16px 0 8px}
+.hero h1{font-size:clamp(32px,8vw,46px);line-height:1.1;color:var(--brown)}
+.slogan{font-family:var(--serif);font-style:italic;font-size:21px;color:var(--mut);margin:6px 0 14px}
+
+.soc{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:0 0 16px}
+.soc a{display:inline-flex;align-items:center;gap:6px;padding:9px 15px;border-radius:999px;text-decoration:none;
+  color:var(--brown);font-weight:600;font-size:14px;background:var(--card);border:1px solid var(--ln);
+  box-shadow:var(--sh);transition:transform .2s,border-color .2s}
+.soc a:hover{transform:translateY(-2px);border-color:var(--gold)}
+
+.orn{display:flex;align-items:center;justify-content:center;gap:10px;color:var(--gold);margin:0 0 18px}
+.orn::before,.orn::after{content:"";width:54px;height:1px;background:linear-gradient(90deg,transparent,var(--gold))}
+.orn::after{transform:scaleX(-1)}
+.cta{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:26px}
+
+.btn{display:inline-flex;align-items:center;gap:8px;font:600 14px var(--sans);text-decoration:none;cursor:pointer;border:0;
+  border-radius:999px;padding:12px 22px;color:#fff;background:linear-gradient(135deg,var(--gold),#8a6a3a);
+  box-shadow:0 8px 18px -8px rgba(138,106,58,.7);transition:transform .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn.ghost{background:transparent;color:var(--brown);box-shadow:none;border:1.5px solid var(--gold)}
+
+.card{background:var(--card);border:1px solid var(--ln);border-radius:22px;padding:22px 20px;margin-bottom:18px;box-shadow:var(--sh)}
+.card h2{font-size:27px;color:var(--brown);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.card h2::before{content:"";width:5px;height:24px;border-radius:4px;background:linear-gradient(var(--gold2),var(--gold))}
+
+.rv{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+
+.row{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:12px 0;border-bottom:1px dashed var(--ln)}
+.row:last-child{border-bottom:0}
+.dia{font-family:var(--serif);font-size:21px;font-weight:600;color:var(--brown)}
+.hor{color:var(--mut);text-align:right;font-weight:500}
+
+.lider{display:flex;gap:16px;align-items:flex-start}
+.lider .ic{flex:none;width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,var(--gold2),var(--gold));
+  display:flex;align-items:center;justify-content:center;font-size:26px}
+.lider b{font-family:var(--serif);font-size:23px;color:var(--brown);display:block;line-height:1.2;margin-bottom:4px}
+
+.end{font-weight:500;margin-bottom:14px}
+.mapbox{border-radius:16px;overflow:hidden;border:1px solid var(--ln);margin-bottom:14px}
+.mapbox iframe{display:block;width:100%;height:280px;border:0}
+.mapbox:empty{min-height:190px;display:flex;align-items:center;justify-content:center;text-align:center;padding:16px;
+  color:var(--mut);font-size:14px;white-space:pre-line;
+  background:repeating-linear-gradient(45deg,transparent 0 12px,color-mix(in srgb,var(--gold) 8%,transparent) 12px 24px)}
+.mapbox:empty::before{content:"🗺️\A Cole aqui o código HTML do Google Maps (iframe)"}
+.tiles{display:flex;gap:12px;justify-content:center;margin:0 0 18px}
+.tile{position:relative;width:min(44vw,170px);aspect-ratio:1/1;border-radius:20px;overflow:hidden;
+  background:var(--card) center/cover no-repeat;border:1px solid var(--ln);box-shadow:var(--sh);
+  display:flex;align-items:flex-end;text-decoration:none;transition:transform .2s}
+.tile:hover{transform:translateY(-3px)}
+.tile span{width:100%;padding:22px 8px 10px;color:#fff;font:600 14px var(--sans);text-align:center;
+  background:linear-gradient(to top,rgba(0,0,0,.65),transparent)}
+</style>
+</head>
+<body>
+
+<div class="fab"><button id="btnTema" title="Alternar tema">🌓</button></div>
+
+<main>
+  <div class="banner" id="banner"></div>
+  <div class="logo" id="logo"><span id="lph">⛪</span></div>
+
+  <header class="hero">
+    <h1>Assembleia de Deus</h1>
+    <p class="slogan">Ministerio do eden</p>
+    <div class="tiles">
+  <a class="tile" href="https://instagram.com/SEU_PERFIL" target="_blank" rel="noopener" style="background-image:url('imagens/instagram.jpg')"><span>Instagram</span></a>
+  <!--<a class="tile" href="galeria.html" style="background-image:url('imagens/galeria.jpg')"><span>Galeria</span></a>-->
+</div>
+    <div class="soc" id="soc"></div>
+    <div class="orn">✦</div>
+    <div class="cta">
+      <a class="btn" href="#local">📍 Como chegar</a>
+      <!--<a class="btn ghost" id="btnGaleria" style="display:none">📸 Galeria da igreja</a>-->
+    </div>
+  </header>
+
+<!--  <section class="card rv">
+    <h2>Quem somos</h2>
+    <p>Somos uma comunidade cristã que acredita no poder do amor, da fé e da família. Nascemos do desejo de acolher pessoas, anunciar a graça de Deus e caminhar juntos em todas as fases da vida.</p>
+    <p>Aqui você encontra um lugar para crescer, servir e ser amado. Seja bem-vindo(a)! Sua presença é muito especial para nós.</p>
+  </section> -->
+
+  <section class="card rv">
+    <h2>Horários e programação</h2>
+    <div class="row"><span class="dia">Domingo</span><span class="hor">09h e 19h</span></div>
+    <div class="row"><span class="dia">Quarta-feira</span><span class="hor">19h30 – Palavra</span></div>
+    <div class="row"><span class="dia">Sexta-feira</span><span class="hor">19h – Campanha Tempo de Buscar</span></div>
+  </section>
+
+  <section class="card rv">
+    <h2>Liderança</h2>
+    <div class="lider">
+      <div class="ic">🕊️</div>
+      <div>
+        <b>Pr. Paulo Firmo</b>
+      </div>
+    </div>
+  </section>
+
+  <section class="card rv" id="local">
+    <h2>Localização</h2>
+    <p class="end" id="end">R. Dez Lto Dois Netinhos, 477 - Parque Santa Filomena, Magé</p>
+    <div class="mapbox"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d759.0398957777306!2d-43.01632453048699!3d-22.59100256051448!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x99bb005c8245fb%3A0x6271d72728784c00!2sAssembleia%20de%20deus%20Ministerio%20do%20eden!5e1!3m2!1spt-BR!2sbr!4v1790795992616!5m2!1spt-BR!2sbr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+    <a class="btn ghost" id="rota" target="_blank" rel="noopener">🧭 Abrir rota no Google Maps</a>
+  </section>
+</main>
+
+<script>
+(function(){
+  'use strict';
+
+  var CONFIG={
+    banner:'imagens/banner',
+    logo:'imagens/logo',
+    instagram:'',
+    facebook:'',
+    youtube:'',
+    whatsapp:'',
+    galeria:'galeria.html'
+  };
+
+  var EXTENSOES=['jpg','jpeg','png','webp'];
+  var $=function(s){return document.querySelector(s)};
+  var KEY='igreja-tema';
+
+  function aplicarTema(t){
+    if(t)document.documentElement.setAttribute('data-theme',t);
+    else document.documentElement.removeAttribute('data-theme');
+  }
+  var tema='';
+  try{tema=localStorage.getItem(KEY)||''}catch(e){}
+  aplicarTema(tema);
+  $('#btnTema').onclick=function(){
+    var escuro=tema?tema==='dark':matchMedia('(prefers-color-scheme:dark)').matches;
+    tema=escuro?'light':'dark';
+    aplicarTema(tema);
+    try{localStorage.setItem(KEY,tema)}catch(e){}
+  };
+
+  function carregarImagem(base,aoCarregar,i){
+    i=i||0;
+    if(!base||i>=EXTENSOES.length)return;
+    var url=/\.[a-z0-9]{3,4}$/i.test(base)?base:base+'.'+EXTENSOES[i];
+    var img=new Image();
+    img.onload=function(){aoCarregar(url)};
+    img.onerror=function(){if(url!==base)carregarImagem(base,aoCarregar,i+1)};
+    img.src=url;
+  }
+
+  carregarImagem(CONFIG.banner,function(url){
+    $('#banner').style.backgroundImage='url("'+url+'"),linear-gradient(160deg,#8a6a43,#3b2817)';
+  });
+  carregarImagem(CONFIG.logo,function(url){
+    $('#logo').style.backgroundImage='url("'+url+'")';
+    $('#lph').style.display='none';
+  });
+
+  $('#rota').href='https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent($('#end').textContent);
+
+  function montarLink(chave,valor){
+    valor=(valor||'').trim();
+    if(!valor)return'';
+    if(chave==='whatsapp'&&!/^https?:/i.test(valor)){
+      var n=valor.replace(/\D/g,'');
+      if(!n)return'';
+      return'https://wa.me/'+(n.length<=11?'55'+n:n);
+    }
+    return/^https?:/i.test(valor)?valor:'https://'+valor;
+  }
+
+  var REDES=[['instagram','📸 Instagram'],['facebook','👍 Facebook'],['youtube','▶️ YouTube'],['whatsapp','💬 WhatsApp']];
+  var soc=$('#soc');
+  REDES.forEach(function(r){
+    var url=montarLink(r[0],CONFIG[r[0]]);
+    if(!url)return;
+    var a=document.createElement('a');
+    a.href=url;a.target='_blank';a.rel='noopener';a.textContent=r[1];
+    soc.appendChild(a);
+  });
+  if(!soc.children.length)soc.style.display='none';
+
+  if(CONFIG.galeria){
+    $('#btnGaleria').href=CONFIG.galeria;
+    $('#btnGaleria').style.display='';
+  }
+
+  var io='IntersectionObserver' in window?new IntersectionObserver(function(es){
+    es.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}});
+  },{threshold:.12}):null;
+  document.querySelectorAll('.rv').forEach(function(el){io?io.observe(el):el.classList.add('in')});
+})();
+</script>
+</body>
+</html>
